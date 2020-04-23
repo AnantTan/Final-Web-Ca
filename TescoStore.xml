@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tescostock>
+  <section name="Dairy Products">
+    <entree vegetarian="true">
+      <item>Whole Milk</item>
+      <price>2.99</price>
+    </entree>
+    <entree>
+      <item>Cheese</item>
+      <price>5.49</price>
+    </entree>
+    <entree>
+      <item>Cream</item>
+      <price>3.99</price>
+    </entree>
+    <entree>
+      <item>test</item>
+      <price>20</price>
+    </entree>
+    <entree>
+      <item>test 3</item>
+      <price>33</price>
+    </entree>
+    <entree>
+      <item>test dairy</item>
+      <price>11</price>
+    </entree>
+  </section>
+  <section name="Can Food">
+    <entree>
+      <item>Chick peas</item>
+      <price>2.00</price>
+    </entree>
+    <entree>
+      <item>Chilly Kidney beans</item>
+      <price>2.00</price>
+    </entree>
+    <entree>
+      <item>Mango pulp</item>
+      <price>4.99</price>
+    </entree>
+  </section>
+  <section name="Home">
+    <entree>
+      <item>Clothes hanger (10)</item>
+      <price>5.00</price>
+    </entree>
+    <entree>
+      <item>again test</item>
+      <price>11</price>
+    </entree>
+  </section>
+  <section name="Drinks">
+    <entree>
+      <item>Blue Label</item>
+      <price>190</price>
+    </entree>
+    <entree>
+      <item>Guinness</item>
+      <price>12.99</price>
+    </entree>
+    <entree>
+      <item>Corona</item>
+      <price>14.99</price>
+    </entree>
+    <entree>
+      <item>Baileys</item>
+      <price>16.99</price>
+    </entree>
+    <entree>
+      <item>Chivas Regal</item>
+      <price>22.49</price>
+    </entree>
+    <entree>
+      <item>drink Coke</item>
+      <price>2</price>
+    </entree>
+  </section>
+</tescostock>
