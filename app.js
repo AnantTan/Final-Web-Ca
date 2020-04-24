@@ -111,14 +111,16 @@ router.get('/get/html', function(req, res) {
     });
   }
   
-  exports.deleteUser = function(req, res) {
-  User.findByIdAndRemove(req.params.id, function (err, user) {
-    if (err) {
-      res.status(400).json(err);
-    } 
-    res.json(user);
-  }); 
-};
+// POST request to delete record from mongodb Altas
+router.post('/post/delete', function(req, res) {
+  //Call this method and Delete record from mongDB Altas
+  Item.findByIdAndRemove(req.body._id, (err, doc) => {
+    if (!err) {
+        console.log("item deleted "+req.body._id);
+    }
+    else { console.log('Error in item delete :' + err); }
+  });
+});
 
 //This is where we as the server to be listening to user with a specified IP and Port
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
