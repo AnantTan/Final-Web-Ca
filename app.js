@@ -111,6 +111,14 @@ router.get('/get/html', function(req, res) {
     });
   }
   
+  exports.deleteUser = function(req, res) {
+  User.findByIdAndRemove(req.params.id, function (err, user) {
+    if (err) {
+      res.status(400).json(err);
+    } 
+    res.json(user);
+  }); 
+};
 
 //This is where we as the server to be listening to user with a specified IP and Port
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
