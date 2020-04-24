@@ -59,6 +59,41 @@ router.get('/get/html', function(req, res) {
     {sec_n:2,sec:"Home"},
     {sec_n:3,sec:"Drinks"}
   ];
+  //This method is used to find all record from MongoDB Altas
+ Item.find((err,data)=>{
+    if(!err){     
+      var xmlStr="<tescostock>";
+      for(var i=0;i<secOb.length;i++){
+        var filter_sec_n=data.filter(function(v, ind) {
+          return (v["sec"] == secOb[i].sec_n);
+        });
+        
+        if(filter_sec_n.length>0){
+          xmlStr+="<section name='"+secOb[i].sec+"' secid='"+secOb[i].sec_n+"'>";
+          for(var j=0;j<filter_sec_n.length;j++){
+            xmlStr+="<entree><sec_n>"+secOb[i].sec_n+"</sec_n><_id>"+filter_sec_n[j]._id+"</_id><item>"+filter_sec_n[j].item+"</item><price>"+filter_sec_n[j].price+"</price></entree>";
+          }
+          xmlStr+="</section>";
+        }
+      }
+
+    xmlStr+="</tescostock>";      
+
+    res.writeHead(200, {'Content-Type': 'text/html'}); //We are responding to the client that the content served back is HTML and the it exists (code 200)
+    var xml =xmlStr; //fs.readFileSync('TescoStore.xml', 'utf8'); //We are reading in the XML file
+    var xsl = fs.readFileSync('TescoStore.xsl', 'utf8'); //We are reading in the XSL file
+    var doc = xmlParse(xml); //Parsing our XML file
+    var stylesheet = xmlParse(xsl); //Parsing our XSL file
+    var result = xsltProcess(doc, stylesheet); //Execute Transformation
+
+    res.end(result.toString()); //We render the result back to the user converting it to a string before serving
+    }
+    else{
+      console.log("Error on Data Fetch")
+      res.end("");
+    }
+  })
+});
 
 
 //This is where we as the server to be listening to user with a specified IP and Port
