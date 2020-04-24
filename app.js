@@ -59,6 +59,7 @@ router.get('/get/html', function(req, res) {
     {sec_n:2,sec:"Home"},
     {sec_n:3,sec:"Drinks"}
   ];
+
   //This method is used to find all record from MongoDB Altas
  Item.find((err,data)=>{
     if(!err){     
@@ -95,6 +96,21 @@ router.get('/get/html', function(req, res) {
   })
 });
 
+  //Function to Add new record in MongoDB Altas 
+  function updateRecord(req, res) {
+    var item = new Item();
+    item.sec = req.body.sec_n;
+    item.item = req.body.item;
+    item.price = req.body.price;
+    req.body.sec=req.body.sec_n;
+    Item.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+      if (!err)
+        console.log("Updated Item");
+      else
+        console.log('Error during record update : ' + err);
+    });
+  }
+  
 
 //This is where we as the server to be listening to user with a specified IP and Port
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
