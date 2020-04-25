@@ -111,11 +111,21 @@ router.get('/get/html', function(req, res) {
     });
   }
 
-  exports.updateUser = function(req, res)
+  if(req.body._id!="")
   {
-   User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true},function (err, user) {
+    //Update record to MongoDB Altas
+  updateRecord(req,res);
+  }
+  else
+  {
+    //Insert record to MongoDB Altas
+  insertRecord(req,res);
+  }
 
-   }}
+  // Re-direct the browser back to the page, where the POST request came from
+  res.redirect('back');
+
+});
 
 // POST request to delete record from mongodb Altas
 router.post('/post/delete', function(req, res) {
