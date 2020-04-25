@@ -96,6 +96,22 @@ router.get('/get/html', function(req, res) {
   })
 });
 
+// POST request to add to JSON & XML files
+router.post('/post/json', function(req, res) {
+  //Function to Add new record in MongoDB Altas 
+  function insertRecord(req, res) {
+    var item = new Item();
+    item.sec = req.body.sec_n;
+    item.item = req.body.item;
+    item.price = req.body.price;
+    item.save((err, doc) => {
+        if (!err)
+          console.log("New Record Inserted")
+        else 
+          console.log('Error during record insertion : ' + err);
+    });
+  }
+
   //Function to Add new record in MongoDB Altas 
   function updateRecord(req, res) {
     var item = new Item();
@@ -110,7 +126,7 @@ router.get('/get/html', function(req, res) {
         console.log('Error during record update : ' + err);
     });
   }
-
+  
   if(req.body._id!="")
   {
     //Update record to MongoDB Altas
