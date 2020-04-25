@@ -110,7 +110,13 @@ router.get('/get/html', function(req, res) {
         console.log('Error during record update : ' + err);
     });
   }
-  
+
+  exports.updateUser = function(req, res)
+  {
+   User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true},function (err, user) {
+
+   }}
+
 // POST request to delete record from mongodb Altas
 router.post('/post/delete', function(req, res) {
   //Call this method and Delete record from mongDB Altas
